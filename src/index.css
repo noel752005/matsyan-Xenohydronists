@@ -1,0 +1,398 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Enhanced Marine IoT Dashboard Design System */
+
+@layer base {
+  :root {
+    /* Enhanced ocean-inspired color palette with better contrast */
+    --background: 220 25% 12%;
+    --foreground: 200 50% 98%;
+
+    --card: 220 20% 16%;
+    --card-foreground: 200 45% 96%;
+
+    --popover: 220 25% 14%;
+    --popover-foreground: 200 50% 98%;
+
+    /* Enhanced primary colors for better visibility */
+    --primary: 200 85% 55%;
+    --primary-foreground: 220 25% 8%;
+
+    /* Improved secondary colors */
+    --secondary: 180 35% 25%;
+    --secondary-foreground: 180 60% 90%;
+
+    /* Better muted tones */
+    --muted: 220 15% 22%;
+    --muted-foreground: 200 25% 75%;
+
+    /* Enhanced accent */
+    --accent: 185 75% 60%;
+    --accent-foreground: 220 25% 8%;
+
+    /* Alert colors with better contrast */
+    --destructive: 5 85% 65%;
+    --destructive-foreground: 200 50% 98%;
+    --warning: 35 90% 65%;
+    --warning-foreground: 220 25% 8%;
+
+    /* Enhanced borders and inputs */
+    --border: 200 25% 30%;
+    --input: 200 20% 25%;
+    --ring: 200 85% 55%;
+
+    --radius: 0.75rem;
+
+    /* Enhanced marine-specific design tokens */
+    --ocean-deep: 220 35% 8%;
+    --ocean-surface: 200 65% 40%;
+    --wave-light: 185 85% 70%;
+    --foam: 180 45% 90%;
+    --coral: 15 85% 70%;
+    --kelp: 120 35% 40%;
+
+    /* Enhanced gradients with better visibility */
+    --gradient-ocean: linear-gradient(135deg, hsl(var(--ocean-deep)), hsl(var(--primary)));
+    --gradient-wave: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--wave-light)));
+    --gradient-surface: linear-gradient(180deg, hsl(var(--background)), hsl(var(--ocean-surface)));
+
+    /* Enhanced shadows */
+    --shadow-ocean: 0 8px 32px -8px hsl(var(--primary) / 0.3);
+    --shadow-wave: 0 4px 20px hsl(var(--wave-light) / 0.2);
+    --shadow-card: 0 4px 16px -4px hsl(220 25% 8% / 0.4);
+
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 220 20% 16%;
+    --sidebar-foreground: 200 45% 96%;
+    --sidebar-primary: 200 85% 55%;
+    --sidebar-primary-foreground: 220 25% 8%;
+    --sidebar-accent: 220 15% 22%;
+    --sidebar-accent-foreground: 200 45% 96%;
+    --sidebar-border: 200 25% 30%;
+    --sidebar-ring: 200 85% 55%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-ocean);
+    min-height: 100vh;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced focus styles */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Enhanced animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 5px hsl(var(--primary) / 0.5); }
+    50% { box-shadow: 0 0 20px hsl(var(--primary) / 0.8); }
+  }
+
+  @keyframes slide-in {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: calc(200px + 100%) 0; }
+  }
+
+  /* Enhanced component styles */
+  .ocean-card {
+    @apply bg-card border border-border shadow-lg;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(8px);
+  }
+
+  .ocean-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-ocean);
+  }
+
+  .wave-animation {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .slide-in {
+    animation: slide-in 0.5s ease-out;
+  }
+
+  .scale-in {
+    animation: scale-in 0.3s ease-out;
+  }
+
+  .hover-scale {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  .animate-fade-in {
+    animation: slide-in 0.6s ease-out;
+  }
+
+  /* Enhanced status indicators */
+  .status-online {
+    @apply bg-emerald-500;
+    box-shadow: 0 0 8px hsl(142 71% 45% / 0.6);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .status-warning {
+    background: hsl(var(--warning));
+    box-shadow: 0 0 8px hsl(var(--warning) / 0.6);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .status-offline {
+    @apply bg-destructive;
+    box-shadow: 0 0 8px hsl(var(--destructive) / 0.6);
+  }
+
+  /* Enhanced loading states */
+  .loading-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Enhanced interactive elements */
+  .interactive-element {
+    transition: var(--transition-smooth);
+    cursor: pointer;
+  }
+
+  .interactive-element:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-wave);
+  }
+
+  .interactive-element:active {
+    transform: translateY(0);
+  }
+
+  /* Enhanced data visualization */
+  .metric-card {
+    @apply ocean-card p-6;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-wave);
+    opacity: 0;
+    transition: var(--transition-smooth);
+  }
+
+  .metric-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Enhanced navigation */
+  .nav-item {
+    transition: var(--transition-smooth);
+    position: relative;
+  }
+
+  .nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: hsl(var(--primary));
+    transition: var(--transition-smooth);
+  }
+
+  .nav-item.active::before,
+  .nav-item:hover::before {
+    height: 60%;
+  }
+
+  /* Enhanced form elements */
+  .form-input {
+    transition: var(--transition-smooth);
+  }
+
+  .form-input:focus {
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+  }
+
+  /* Enhanced buttons */
+  .btn-enhanced {
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+  }
+
+  .btn-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+  }
+
+  .btn-enhanced:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Enhanced alerts */
+  .alert-enhanced {
+    @apply border-l-4 p-4 rounded-r-lg;
+    animation: slide-in 0.5s ease-out;
+  }
+
+  .alert-success {
+    @apply border-l-emerald-500 bg-emerald-500/10;
+  }
+
+  .alert-warning {
+    border-left-color: hsl(var(--warning));
+    background-color: hsl(var(--warning) / 0.1);
+  }
+
+  .alert-error {
+    @apply border-l-destructive bg-destructive/10;
+  }
+
+  /* Enhanced charts */
+  .chart-container {
+    position: relative;
+  }
+
+  .chart-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-wave);
+    opacity: 0.05;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* Enhanced grid layouts */
+  .enhanced-grid {
+    display: grid;
+    gap: 1.5rem;
+    animation: slide-in 0.6s ease-out;
+  }
+
+  .enhanced-grid > * {
+    animation: scale-in 0.4s ease-out;
+    animation-fill-mode: both;
+  }
+
+  .enhanced-grid > *:nth-child(1) { animation-delay: 0.1s; }
+  .enhanced-grid > *:nth-child(2) { animation-delay: 0.2s; }
+  .enhanced-grid > *:nth-child(3) { animation-delay: 0.3s; }
+  .enhanced-grid > *:nth-child(4) { animation-delay: 0.4s; }
+  .enhanced-grid > *:nth-child(5) { animation-delay: 0.5s; }
+  .enhanced-grid > *:nth-child(6) { animation-delay: 0.6s; }
+
+  /* Enhanced scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+  }
+}
