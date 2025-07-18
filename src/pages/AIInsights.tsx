@@ -55,31 +55,27 @@ export default function AIInsights() {
   const [predictions, setPredictions] = useState(initialPredictions);
 
   useEffect(() => {
-    // Example sensor input data to send to the API
-    const sensorInput = {
-      humidity: 50,
-      pressure: 1013,
-      wind_direction: 180,
-      solar_radiation: 200,
-      prev_wave_height: 1.8,
-      prev_wind_speed: 15.2,
-      prev_temp: 22.5,
-      system_cpu_usage: 67,
-    };
-
-    async function fetchPredictions() {
+    async function fetchSensorAndPredictions() {
       try {
-        const response = await fetch("http://localhost:8000/predict", {
+        // Fetch sensor data from backend
+        const sensorResponse = await fetch("http://localhost:8000/sensor-data");
+        if (!sensorResponse.ok) {
+          throw new Error("Failed to fetch sensor data");
+        }
+        const sensorInput = await sensorResponse.json();
+
+        // Fetch predictions using sensor data
+        const predictResponse = await fetch("http://localhost:8000/predict/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(sensorInput),
         });
-        if (!response.ok) {
+        if (!predictResponse.ok) {
           throw new Error("Failed to fetch predictions");
         }
-        const data = await response.json();
+        const data = await predictResponse.json();
 
         const updatedPredictions = predictions.map((pred) => {
           let newPredicted = pred.predicted;
@@ -112,7 +108,7 @@ export default function AIInsights() {
       }
     }
 
-    fetchPredictions();
+    fetchSensorAndPredictions();
   }, []);
 
   const getInsightIcon = (type: string) => {
